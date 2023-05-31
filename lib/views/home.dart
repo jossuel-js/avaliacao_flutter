@@ -19,7 +19,7 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           // The title text which will be shown on the action bar
           title: const Text("IFPI"),
-          backgroundColor:Colors.green,
+          backgroundColor:Colors.blue,
           centerTitle: true,
         ),
         body: Center(
@@ -42,9 +42,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   ElevatedButton(
                     style: ButtonStyle(
                         backgroundColor:
-                            MaterialStateProperty.all(Colors.green),
+                            MaterialStateProperty.all(Colors.blue),
                         padding: MaterialStateProperty.all(
-                            const EdgeInsets.fromLTRB(20, 50, 20, 40)),
+                            const EdgeInsets.all(40)),
                         textStyle: MaterialStateProperty.all(
                             const TextStyle(
                                 fontSize: 14, color: Colors.black))),
@@ -54,13 +54,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   ElevatedButton(
                     style: ButtonStyle(
                         backgroundColor:
-                            MaterialStateProperty.all(Colors.green),
+                            MaterialStateProperty.all(Colors.blue),
                         padding: MaterialStateProperty.all(
-                            const EdgeInsets.fromLTRB(30, 50, 30, 40)),
+                            const EdgeInsets.all(40)),
                         textStyle: MaterialStateProperty.all(
                             const TextStyle(
                                 fontSize: 14, color: Colors.white))),
-                    onPressed: null,
+                    onPressed:(() => {Navigator.pushNamed(context, '/maps')}),
                     child: const Text('MAPS'),
                   ),
                 ]),
@@ -75,9 +75,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   ElevatedButton(
                     style: ButtonStyle(
                         backgroundColor:
-                            MaterialStateProperty.all(Colors.green),
+                            MaterialStateProperty.all(Colors.blue),
                         padding: MaterialStateProperty.all(
-                            const EdgeInsets.fromLTRB(20, 50, 20, 40)),
+                            const EdgeInsets.all(40)),
                         textStyle: MaterialStateProperty.all(
                             const TextStyle(
                                 fontSize: 14, color: Colors.black))),
@@ -87,9 +87,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   ElevatedButton(
                     style: ButtonStyle(
                         backgroundColor:
-                            MaterialStateProperty.all(Colors.green),
+                            MaterialStateProperty.all(Colors.blue),
                         padding: MaterialStateProperty.all(
-                            const EdgeInsets.fromLTRB(30, 50, 30, 40)),
+                            const EdgeInsets.all(40)),
                         textStyle: MaterialStateProperty.all(
                             const TextStyle(
                                 fontSize: 14, color: Colors.black))),

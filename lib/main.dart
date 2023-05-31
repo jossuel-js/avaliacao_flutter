@@ -3,6 +3,7 @@ import 'package:avaliacao/views/home.dart';
 
 import 'package:avaliacao/views/lobby.dart';
 import 'package:avaliacao/views/login.dart';
+import 'package:avaliacao/views/mapa.dart';
 import 'package:avaliacao/views/registro.dart';
 import 'package:flutter/material.dart';
 
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         '/homepage': (context) => MyHomePage('homepage'),
         '/login': (context) => LoginPage(),
         '/register': (context) => RegisterPage(),
+        '/maps': (context) => MapSample(),
 
       },
     );
