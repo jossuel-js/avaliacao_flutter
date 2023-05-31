@@ -12,7 +12,7 @@ class WelcomePage extends StatefulWidget {
 class _WelcomePageState extends State<WelcomePage> {
   Widget _submitButton() {
     return InkWell(
-      onTap: () {},
+      onTap: () {Navigator.pushNamed(context, '/login');},
       child: Container(
         width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.symmetric(vertical: 13),
@@ -31,7 +31,7 @@ class _WelcomePageState extends State<WelcomePage> {
 
   Widget _signUpButton() {
     return InkWell(
-      onTap: () {},
+      onTap: () {Navigator.pushNamed(context, '/register');},
       child: Container(
         width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.symmetric(vertical: 13),
