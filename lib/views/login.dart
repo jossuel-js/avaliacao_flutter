@@ -7,6 +7,7 @@ class LoginPage extends StatelessWidget {
       child: Scaffold(
         body: Container(
           margin: EdgeInsets.all(24),
+          child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -18,14 +19,16 @@ class LoginPage extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ));
   }
 
   _header(context) {
     return Column(
       children: [
         Image.asset('assets/images/ifpi.jpg'),
+       Padding(padding: EdgeInsets.all(30))
       ],
+      
     );
   }
 
