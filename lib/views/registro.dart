@@ -58,7 +58,7 @@ class RegisterPage extends StatelessWidget {
         ElevatedButton(
           onPressed: () {},
           child: Text(
-            "Login",
+            "Registro",
             style: TextStyle(fontSize: 20),
           ),
           style: ElevatedButton.styleFrom(
