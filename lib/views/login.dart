@@ -76,7 +76,7 @@ class LoginPage extends StatelessWidget {
   }
 
   _forgotPassword(context) {
-    return TextButton(onPressed: () {}, child: Text("Forgot password?"));
+    return TextButton(onPressed: () {Navigator.pushNamed(context, '/forgot');}, child: Text("Forgot password?"));
   }
 
   _signup(context) {

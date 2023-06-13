@@ -19,7 +19,7 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           // The title text which will be shown on the action bar
           title: const Text("IFPI"),
-          backgroundColor:Colors.blue,
+          backgroundColor:Colors.black,
           centerTitle: true,
         ),
         body: Center(
@@ -42,19 +42,19 @@ class _MyHomePageState extends State<MyHomePage> {
                   ElevatedButton(
                     style: ButtonStyle(
                         backgroundColor:
-                            MaterialStateProperty.all(Colors.blue),
+                            MaterialStateProperty.all(Color.fromARGB(255, 148, 180, 196)),
                         padding: MaterialStateProperty.all(
                             const EdgeInsets.all(40)),
                         textStyle: MaterialStateProperty.all(
                             const TextStyle(
-                                fontSize: 14, color: Colors.black))),
+                                fontSize: 14, color: Colors.white))),
                     onPressed: null,
                     child: const Text('CONTACTS'),
                   ),
                   ElevatedButton(
                     style: ButtonStyle(
                         backgroundColor:
-                            MaterialStateProperty.all(Colors.blue),
+                            MaterialStateProperty.all(Color.fromARGB(255, 148, 180, 196)),
                         padding: MaterialStateProperty.all(
                             const EdgeInsets.all(40)),
                         textStyle: MaterialStateProperty.all(
@@ -75,24 +75,24 @@ class _MyHomePageState extends State<MyHomePage> {
                   ElevatedButton(
                     style: ButtonStyle(
                         backgroundColor:
-                            MaterialStateProperty.all(Colors.blue),
+                            MaterialStateProperty.all(Color.fromARGB(255, 148, 180, 196)),
                         padding: MaterialStateProperty.all(
                             const EdgeInsets.all(40)),
                         textStyle: MaterialStateProperty.all(
                             const TextStyle(
-                                fontSize: 14, color: Colors.black))),
-                    onPressed: null,
-                    child: const Text('COMMING'),
+                                fontSize: 14, color: Colors.white))),
+                    onPressed: (() => {Navigator.pushNamed(context, '/cep')}),
+                    child: const Text('CEP'),
                   ),
                   ElevatedButton(
                     style: ButtonStyle(
                         backgroundColor:
-                            MaterialStateProperty.all(Colors.blue),
+                            MaterialStateProperty.all(Color.fromARGB(255, 148, 180, 196)),
                         padding: MaterialStateProperty.all(
                             const EdgeInsets.all(40)),
                         textStyle: MaterialStateProperty.all(
                             const TextStyle(
-                                fontSize: 14, color: Colors.black))),
+                                fontSize: 14, color: Colors.white))),
                     onPressed: null,
                     child: const Text('#####'),
                   ),

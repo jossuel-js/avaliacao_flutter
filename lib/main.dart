@@ -1,4 +1,6 @@
 
+import 'package:avaliacao/views/cep.dart';
+import 'package:avaliacao/views/forgot.dart';
 import 'package:avaliacao/views/home.dart';
 
 import 'package:avaliacao/views/lobby.dart';
@@ -27,7 +29,8 @@ class MyApp extends StatelessWidget {
         '/login': (context) => LoginPage(),
         '/register': (context) => RegisterPage(),
         '/maps': (context) => MapSample(),
-
+        '/forgot': (context) => myforgotpage(title:'forgot-password'),
+        '/cep': (context) => CepPage(),
       },
     );
   }
