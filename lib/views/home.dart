@@ -1,103 +1,154 @@
 import 'package:flutter/material.dart';
 
 
-
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage(String s, {super.key});
-
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
+_header(context) {
+  return Column(
+    children: [
+      Image.asset('assets/images/ifpi.jpg'),
+      Padding(padding: EdgeInsets.all(30))
+    ],
+  );
 }
 
 
-class _MyHomePageState extends State<MyHomePage> {
+class MyHomePage extends StatelessWidget {
+  
+  
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          // The title text which will be shown on the action bar
-          title: const Text("IFPI"),
-          backgroundColor:Colors.black,
-          centerTitle: true,
+     return WillPopScope(
+      onWillPop: () => _exibirAlertaSair(context),
+      child: Scaffold(
+      appBar: AppBar(
+        title: Text('HOMEPAGE'),
+        centerTitle: true,
+        leading: Row(
+          children: [
+            IconButton(
+              icon: Icon(Icons.logout),
+              onPressed: () => _exibirAlertaSair(context),
+              
+            ),
+          ],
         ),
-        body: Center(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-              Container(
-            margin:
-                // ignore: prefer_const_constructors
-                EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
-            child: Image.asset('assets/images/ifpi.jpg'),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          _header(context),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.all(20),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                  backgroundColor: Color.fromARGB(255, 81, 59, 247),
+                  padding: EdgeInsets.symmetric(
+                    vertical: 20,
+                  ),
+                ),
+                onPressed: (() => {Navigator.pushNamed(context, '/maps')}),
+                child: Text('Contacts'),
               ),
-              Container(
-            margin:
-                // ignore: prefer_const_constructors
-                EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  ElevatedButton(
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(Color.fromARGB(255, 148, 180, 196)),
-                        padding: MaterialStateProperty.all(
-                            const EdgeInsets.all(40)),
-                        textStyle: MaterialStateProperty.all(
-                            const TextStyle(
-                                fontSize: 14, color: Colors.white))),
-                    onPressed: null,
-                    child: const Text('CONTACTS'),
+            ),
+          ),
+          SizedBox(height: 0),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.all(20),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25),
                   ),
-                  ElevatedButton(
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(Color.fromARGB(255, 148, 180, 196)),
-                        padding: MaterialStateProperty.all(
-                            const EdgeInsets.all(40)),
-                        textStyle: MaterialStateProperty.all(
-                            const TextStyle(
-                                fontSize: 14, color: Colors.white))),
-                    onPressed:(() => {Navigator.pushNamed(context, '/maps')}),
-                    child: const Text('MAPS'),
+                  primary: Color.fromARGB(255, 81, 59, 247),
+                  padding: EdgeInsets.symmetric(
+                    vertical: 20,
                   ),
-                ]),
+                ),
+                onPressed: (() => {Navigator.pushNamed(context, '/maps')}),
+                child: Text('Profile'),
               ),
-              Container(
-            margin:
-                // ignore: prefer_const_constructors
-                EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  ElevatedButton(
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(Color.fromARGB(255, 148, 180, 196)),
-                        padding: MaterialStateProperty.all(
-                            const EdgeInsets.all(40)),
-                        textStyle: MaterialStateProperty.all(
-                            const TextStyle(
-                                fontSize: 14, color: Colors.white))),
-                    onPressed: (() => {Navigator.pushNamed(context, '/cep')}),
-                    child: const Text('CEP'),
+            ),
+          ),
+          SizedBox(height: 0),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.all(20.0),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25),
                   ),
-                  ElevatedButton(
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(Color.fromARGB(255, 148, 180, 196)),
-                        padding: MaterialStateProperty.all(
-                            const EdgeInsets.all(40)),
-                        textStyle: MaterialStateProperty.all(
-                            const TextStyle(
-                                fontSize: 14, color: Colors.white))),
-                    onPressed: null,
-                    child: const Text('#####'),
+                  primary: Color.fromARGB(255, 81, 59, 247),
+                  padding: EdgeInsets.symmetric(
+                    vertical: 20,
                   ),
-                ]),
+                ),
+                onPressed: (() => {Navigator.pushNamed(context, '/maps')}),
+                child: Text('Maps'),
               ),
-            ])));
+            ),
+          ),
+          SizedBox(height: 0),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.all(20.0),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                  primary: Color.fromARGB(255, 93, 73, 248),
+                  padding: EdgeInsets.symmetric(
+                    vertical: 20,
+                  ),
+                ),
+                onPressed: (() => {Navigator.pushNamed(context, '/weather')}),
+                child: Text('Weather'),
+              ),
+            ),
+          ),
+        ],
+      ),
+     ));
   }
 }
+
+
+void _voltarPagina(BuildContext context) {
+  Navigator.of(context).pushNamed('/login');
+}
+
+
+  Future<bool> _exibirAlertaSair(BuildContext context) async {
+    final resultado = await showDialog<bool>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Deseja sair?'),
+          content: Text('Tem certeza que deseja sair?'),
+          actions: [
+            TextButton(
+              child: Text('Cancelar'),
+              onPressed: () {
+                Navigator.of(context).pop(false);
+              },
+            ),
+            TextButton(
+              child: Text('Sair'),
+              onPressed: () {
+                Navigator.of(context).pushNamed('/login');
+              },
+            ),
+          ],
+        );
+      },
+    );
+    return resultado ?? false;
+  }
+
+

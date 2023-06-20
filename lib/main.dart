@@ -1,5 +1,4 @@
 
-import 'package:avaliacao/views/cep.dart';
 import 'package:avaliacao/views/forgot.dart';
 import 'package:avaliacao/views/home.dart';
 
@@ -7,6 +6,7 @@ import 'package:avaliacao/views/lobby.dart';
 import 'package:avaliacao/views/login.dart';
 import 'package:avaliacao/views/mapa.dart';
 import 'package:avaliacao/views/registro.dart';
+import 'package:avaliacao/views/weather.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -25,12 +25,13 @@ class MyApp extends StatelessWidget {
       ),
       
       routes: {
-        '/homepage': (context) => MyHomePage('homepage'),
+        '/homepage': (context) => MyHomePage(),
         '/login': (context) => LoginPage(),
         '/register': (context) => RegisterPage(),
         '/maps': (context) => MapSample(),
         '/forgot': (context) => myforgotpage(title:'forgot-password'),
-        '/cep': (context) => CepPage(),
+        '/weather': (context) => WeatherPage(),
+        
       },
     );
   }

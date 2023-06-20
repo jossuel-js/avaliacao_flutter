@@ -1,50 +1,112 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class MapSample extends StatefulWidget {
-  const MapSample({super.key});
 
+class MapSample extends StatelessWidget {
   @override
-  State<MapSample> createState() => MapSampleState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'IFPI MAPS',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MapScreen(),
+    );
+  }
 }
 
-class MapSampleState extends State<MapSample> {
-  final Completer<GoogleMapController> _controller =
-      Completer<GoogleMapController>();
+class MapScreen extends StatefulWidget {
+  @override
+  _MapScreenState createState() => _MapScreenState();
+}
 
-  static const CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-  );
+class _MapScreenState extends State<MapScreen> {
+  late GoogleMapController mapController;
+  final LatLng _center = const LatLng(-5.088569, -42.810535);
 
-  static const CameraPosition _kLake = CameraPosition(
-      bearing: 192.8334901395799,
-      target: LatLng(-5.088603390796801, -42.81131544824977),
-      tilt: 59.440717697143555,
-      zoom:19.151926040649414);
+  Set<Marker> _allMarkers = {
+    Marker(
+      markerId: MarkerId('1'),
+      position: LatLng(37.773972, -122.431297),
+      infoWindow: InfoWindow(title: 'Marker 1'),
+    ),
+    Marker(
+      markerId: MarkerId('2'),
+      position: LatLng(37.774979, -122.419469),
+      infoWindow: InfoWindow(title: 'Marker 2'),
+    ),
+    Marker(
+      markerId: MarkerId('3'),
+      position: LatLng(37.775555, -122.415526),
+      infoWindow: InfoWindow(title: 'Marker 3'),
+    ),
+  };
+
+  Set<Marker> _filteredMarkers = {};
+
+  late TextEditingController _searchController;
+
+  @override
+  void initState() {
+    super.initState();
+    _searchController = TextEditingController();
+  }
+
+  void _onMapCreated(GoogleMapController controller) {
+    mapController = controller;
+  }
+
+  void _filterMarkers(String searchTerm) {
+    setState(() {
+      _filteredMarkers = _allMarkers.where((marker) {
+        final title = marker.infoWindow!.title;
+        return title!.toLowerCase().contains(searchTerm.toLowerCase());
+      }).toSet();
+    });
+
+    if (_filteredMarkers.isNotEmpty) {
+      final marker = _filteredMarkers.first;
+      mapController.animateCamera(CameraUpdate.newLatLng(marker.position));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GoogleMap(
-        mapType: MapType.hybrid,
-        initialCameraPosition: _kGooglePlex,
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
+      appBar: AppBar(
+        title: Text('IFPI MAPS'),
+        centerTitle: true,
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _goToTheLake,
-        label: const Text('To the IFPI!'),
-        icon: const Icon(Icons.school),
+      body: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: TextField(
+              controller: _searchController,
+              decoration: InputDecoration(
+                labelText: 'Search',
+                suffixIcon: IconButton(
+                  icon: Icon(Icons.search),
+                  onPressed: () {
+                    String searchTerm = _searchController.text;
+                    _filterMarkers(searchTerm);
+                  },
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: GoogleMap(
+              onMapCreated: _onMapCreated,
+              initialCameraPosition: CameraPosition(
+                target: _center,
+                zoom: 16.0,
+              ),
+              markers: _filteredMarkers.isNotEmpty ? _filteredMarkers : _allMarkers,
+            ),
+          ),
+        ],
       ),
     );
-  }
-
-  Future<void> _goToTheLake() async {
-    final GoogleMapController controller = await _controller.future;
-    await controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
   }
 }

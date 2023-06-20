@@ -8,7 +8,9 @@ class myforgotpage extends StatefulWidget {
 
   @override
   State<myforgotpage> createState() => _myforgotpageState();
+
 }
+  TextEditingController forgot_controller = TextEditingController();
 
 class _myforgotpageState extends State<myforgotpage>
     with TickerProviderStateMixin {
@@ -17,7 +19,7 @@ class _myforgotpageState extends State<myforgotpage>
     return Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.blue,
           centerTitle: true,
         ),
         body: AnimatedBackground(
@@ -67,6 +69,7 @@ class _myforgotpageState extends State<myforgotpage>
                         borderSide: BorderSide(color: Colors.black),
                       ),
                     ),
+                    controller:forgot_controller,
                   ),
                   SizedBox(height: 20),
                   ElevatedButton(

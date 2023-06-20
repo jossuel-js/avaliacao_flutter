@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
+    TextEditingController email_controller = TextEditingController();
+  TextEditingController password_controller= TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -37,8 +39,10 @@ class LoginPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         TextField(
+          controller:email_controller,
+          keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
-              hintText: "Username",
+              hintText: "Email",
               border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(18),
                   borderSide: BorderSide.none),
@@ -48,6 +52,8 @@ class LoginPage extends StatelessWidget {
         ),
         SizedBox(height: 10),
         TextField(
+          controller:password_controller,
+           keyboardType: TextInputType.visiblePassword,
           decoration: InputDecoration(
             hintText: "Password",
             border: OutlineInputBorder(

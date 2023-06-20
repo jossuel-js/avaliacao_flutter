@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatelessWidget {
+  TextEditingController email_controller = TextEditingController();
+  TextEditingController password_controller= TextEditingController();
+  TextEditingController latitude_controller= TextEditingController();
+  TextEditingController longitude_controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Container(
+        body:SingleChildScrollView(child: 
+         Container(
           margin: EdgeInsets.all(24),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -16,7 +22,7 @@ class RegisterPage extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ));
   }
 
   _header(context) {
@@ -32,17 +38,20 @@ class RegisterPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         TextField(
+          keyboardType:TextInputType.emailAddress,
           decoration: InputDecoration(
-              hintText: "Username",
+              hintText: "Email",
               border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(18),
                   borderSide: BorderSide.none),
               fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
               filled: true,
               prefixIcon: Icon(Icons.person)),
+              controller: email_controller,
         ),
         SizedBox(height: 10),
         TextField(
+          keyboardType:TextInputType.visiblePassword,
           decoration: InputDecoration(
             hintText: "Password",
             border: OutlineInputBorder(
@@ -50,13 +59,42 @@ class RegisterPage extends StatelessWidget {
                 borderSide: BorderSide.none),
             fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
             filled: true,
-            prefixIcon: Icon(Icons.person),
+            prefixIcon: Icon(Icons.password),
           ),
           obscureText: true,
+           controller: password_controller,
+        ),
+        SizedBox(height: 10),
+               TextField(
+          decoration: InputDecoration(
+            hintText: "latitude",
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(18),
+                borderSide: BorderSide.none),
+            fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
+            filled: true,
+            prefixIcon: Icon(Icons.location_on),
+          ),
+          obscureText: true,
+           controller: latitude_controller,
+        ),
+        SizedBox(height: 10),
+               TextField(
+          decoration: InputDecoration(
+            hintText: "longitude",
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(18),
+                borderSide: BorderSide.none),
+            fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
+            filled: true,
+            prefixIcon: Icon(Icons.location_on),
+          ),
+          obscureText: true,
+           controller: longitude_controller,
         ),
         SizedBox(height: 10),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () {Navigator.pushNamed(context, '/login');},
           child: Text(
             "Registro",
             style: TextStyle(fontSize: 20),
