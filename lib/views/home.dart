@@ -69,7 +69,7 @@ class MyHomePage extends StatelessWidget {
                     vertical: 20,
                   ),
                 ),
-                onPressed: (() => {Navigator.pushNamed(context, '/maps')}),
+                onPressed: (() => {Navigator.pushNamed(context, '/profile')}),
                 child: Text('Profile'),
               ),
             ),
