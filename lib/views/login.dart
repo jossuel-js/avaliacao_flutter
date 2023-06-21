@@ -55,7 +55,7 @@ class LoginPage extends StatelessWidget {
           controller:password_controller,
            keyboardType: TextInputType.visiblePassword,
           decoration: InputDecoration(
-            hintText: "Password",
+            hintText: "Senha",
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(18),
                 borderSide: BorderSide.none),
@@ -69,7 +69,7 @@ class LoginPage extends StatelessWidget {
         ElevatedButton(
           onPressed: () {Navigator.pushNamed(context, '/homepage');},
           child: Text(
-            "Login",
+            "Entrar",
             style: TextStyle(fontSize: 20),
           ),
           style: ElevatedButton.styleFrom(
@@ -82,15 +82,15 @@ class LoginPage extends StatelessWidget {
   }
 
   _forgotPassword(context) {
-    return TextButton(onPressed: () {Navigator.pushNamed(context, '/forgot');}, child: Text("Forgot password?"));
+    return TextButton(onPressed: () {Navigator.pushNamed(context, '/forgot');}, child: Text("Esqueceu a Senha?"));
   }
 
   _signup(context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("Dont have an account? "),
-        TextButton(onPressed: () {Navigator.pushNamed(context, '/register');}, child: Text("Sign Up"))
+        Text("Nao possui uma conta? "),
+        TextButton(onPressed: () {Navigator.pushNamed(context, '/register');}, child: Text("Cadastrar-se"))
       ],
     );
   }

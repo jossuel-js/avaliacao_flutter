@@ -41,7 +41,7 @@ class _WelcomePageState extends State<WelcomePage> {
           border: Border.all(color: Colors.white, width: 2),
         ),
         child: Text(
-          'Register now',
+          'Registro',
           style: TextStyle(fontSize: 20, color: Colors.white),
         ),
       ),
@@ -50,12 +50,12 @@ class _WelcomePageState extends State<WelcomePage> {
 
   Widget _label() {
     return Container(
-        margin: EdgeInsets.only(top: 40, bottom: 20),
+        margin: EdgeInsets.only(top: 80, bottom: 20),
         child: Column(
           children: <Widget>[
             Text(
-              'Quick contact list in the palm of your hand',
-              style: TextStyle(color: Color(0xff000000), fontSize: 17),
+              'Uma Lista de Contatos rapida na palma da sua mao',
+              style: TextStyle(color: Color(0xff000000), fontSize: 15),
             ),
             SizedBox(
               height: 20,
@@ -72,7 +72,7 @@ class _WelcomePageState extends State<WelcomePage> {
     return RichText(
       textAlign: TextAlign.center,
       text: TextSpan(
-        text: 'IFPI CONTACTS',
+        text: 'IFPI CONTATOS',
         style: TextStyle(color: Colors.black, fontSize: 30),
       ),
     );

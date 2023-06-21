@@ -53,7 +53,7 @@ class RegisterPage extends StatelessWidget {
         TextField(
           keyboardType:TextInputType.visiblePassword,
           decoration: InputDecoration(
-            hintText: "Password",
+            hintText: "Senha",
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(18),
                 borderSide: BorderSide.none),

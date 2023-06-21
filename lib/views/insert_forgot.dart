@@ -1,18 +1,18 @@
 import 'package:animated_background/animated_background.dart';
 import 'package:flutter/material.dart';
 
-class myforgotpage extends StatefulWidget {
-  const myforgotpage({Key? key, required this.title}) : super(key: key);
+class insertForgot extends StatefulWidget {
+  const insertForgot({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
-  State<myforgotpage> createState() => _myforgotpageState();
+  State<insertForgot> createState() => _insertForgotState();
 
 }
   TextEditingController forgot_controller = TextEditingController();
 
-class _myforgotpageState extends State<myforgotpage>
+class _insertForgotState extends State<insertForgot>
     with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
@@ -22,22 +22,7 @@ class _myforgotpageState extends State<myforgotpage>
           backgroundColor: Colors.blue,
           centerTitle: true,
         ),
-        body: AnimatedBackground(
-          behaviour: RandomParticleBehaviour(
-            options: const ParticleOptions(
-              spawnMaxRadius: 50,
-              spawnMinSpeed: 10.00,
-              particleCount: 68,
-              spawnMaxSpeed: 50,
-              minOpacity: 0.0,
-              spawnOpacity: 0.0,
-              baseColor: Color.fromARGB(255, 0, 0, 0),
-              maxOpacity: 1,
-              opacityChangeRate: 0.25,
-              image: Image(image: AssetImage('assets/images/ifpiemovebg.png')),
-            ),
-          ),
-          vsync: this,
+        body: Container(
           child: Form(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 30.0),
@@ -45,7 +30,7 @@ class _myforgotpageState extends State<myforgotpage>
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Enter Your Email',
+                    'Enter Your Code',
                     style: TextStyle(fontSize: 30, color: Colors.black),
                   ),
                   TextFormField(
@@ -72,9 +57,37 @@ class _myforgotpageState extends State<myforgotpage>
                     controller:forgot_controller,
                   ),
                   SizedBox(height: 20),
+                  Text(
+                    'Enter Your New Password',
+                    style: TextStyle(fontSize: 30, color: Colors.black),
+                  ),
+                  TextFormField(
+                    style: TextStyle(color: Colors.black),
+                    decoration: InputDecoration(
+                      labelText: 'New Password',
+                      icon: Icon(
+                        Icons.mail,
+                        color: Colors.black,
+                      ),
+                      errorStyle: TextStyle(color: Colors.black),
+                      labelStyle: TextStyle(color: Colors.black),
+                      hintStyle: TextStyle(color: Colors.black),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                      ),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                      ),
+                      errorBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                      ),
+                    ),
+                    controller:forgot_controller,
+                  ),
+                  SizedBox(height: 20),
                   ElevatedButton(
                     child: Text('Send'),
-                    onPressed: () {Navigator.pushNamed(context, '/insert_token');},
+                    onPressed: () {},
                     style: TextButton.styleFrom(
                       backgroundColor: Colors.black, // Background Color
                     ),
