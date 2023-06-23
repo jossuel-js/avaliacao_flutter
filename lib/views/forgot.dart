@@ -45,7 +45,7 @@ class _myforgotpageState extends State<myforgotpage>
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Enter Your Email',
+                    'Insira seu email',
                     style: TextStyle(fontSize: 30, color: Colors.black),
                   ),
                   TextFormField(
@@ -73,10 +73,10 @@ class _myforgotpageState extends State<myforgotpage>
                   ),
                   SizedBox(height: 20),
                   ElevatedButton(
-                    child: Text('Send'),
+                    child: Text('Enviar'),
                     onPressed: () {Navigator.pushNamed(context, '/insert_token');},
                     style: TextButton.styleFrom(
-                      backgroundColor: Colors.black, // Background Color
+                      backgroundColor: Colors.black, 
                     ),
                   ),
                 ],

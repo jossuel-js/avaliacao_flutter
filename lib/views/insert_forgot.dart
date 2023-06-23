@@ -30,7 +30,7 @@ class _insertForgotState extends State<insertForgot>
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Enter Your Code',
+                    'Insira seu codigo',
                     style: TextStyle(fontSize: 30, color: Colors.black),
                   ),
                   TextFormField(
@@ -58,15 +58,15 @@ class _insertForgotState extends State<insertForgot>
                   ),
                   SizedBox(height: 20),
                   Text(
-                    'Enter Your New Password',
+                    'Insira nova senha',
                     style: TextStyle(fontSize: 30, color: Colors.black),
                   ),
                   TextFormField(
                     style: TextStyle(color: Colors.black),
                     decoration: InputDecoration(
-                      labelText: 'New Password',
+                      labelText: 'senha',
                       icon: Icon(
-                        Icons.mail,
+                        Icons.password,
                         color: Colors.black,
                       ),
                       errorStyle: TextStyle(color: Colors.black),
@@ -86,10 +86,10 @@ class _insertForgotState extends State<insertForgot>
                   ),
                   SizedBox(height: 20),
                   ElevatedButton(
-                    child: Text('Send'),
+                    child: Text('Enviar'),
                     onPressed: () {},
                     style: TextButton.styleFrom(
-                      backgroundColor: Colors.black, // Background Color
+                      backgroundColor: Colors.black, 
                     ),
                   ),
                 ],
