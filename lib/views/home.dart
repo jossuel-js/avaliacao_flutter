@@ -50,7 +50,7 @@ class MyHomePage extends StatelessWidget {
                     vertical: 20,
                   ),
                 ),
-                onPressed: (() => {Navigator.pushNamed(context, '/maps')}),
+                onPressed: (() => {Navigator.pushNamed(context, '/contacts')}),
                 child: Text('Contatos'),
               ),
             ),

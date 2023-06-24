@@ -1,4 +1,5 @@
 
+import 'package:avaliacao/views/contacts.dart';
 import 'package:avaliacao/views/forgot.dart';
 import 'package:avaliacao/views/home.dart';
 import 'package:avaliacao/views/insert_forgot.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
         '/weather': (context) => WeatherPage(),
         '/profile': (context) => ProfileScreen(),
         '/insert_token': (context) => insertForgot(title: 'Insert Token forgot',),
+        '/contacts': (context) => ContactScreen(),
         
       },
     );
