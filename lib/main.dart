@@ -25,11 +25,11 @@ class MyApp extends StatelessWidget {
       ),
       
       routes: {
-        '/homepage': (context) => MyHomePage(),
+        '/homepage': (context) => const MyHomePage(),
         '/login': (context) => LoginPage(),
         '/register': (context) => RegisterPage(),
         '/maps': (context) => MapSample(),
-        '/forgot': (context) => myforgotpage(title:'forgot-password'),
+        '/forgot': (context) => const myforgotpage(title:'forgot-password'),
         '/weather': (context) => WeatherPage(),
         
       },

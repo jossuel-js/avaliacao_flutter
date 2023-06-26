@@ -1,7 +1,8 @@
+import 'package:avaliacao/services/serviceUser.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
-    TextEditingController email_controller = TextEditingController();
+  TextEditingController email_controller = TextEditingController();
   TextEditingController password_controller= TextEditingController();
   @override
   Widget build(BuildContext context) {

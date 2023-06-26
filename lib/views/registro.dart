@@ -46,10 +46,10 @@ class RegisterPage extends StatelessWidget {
                   borderSide: BorderSide.none),
               fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
               filled: true,
-              prefixIcon: Icon(Icons.person)),
+              prefixIcon: const Icon(Icons.person)),
               controller: email_controller,
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         TextField(
           keyboardType:TextInputType.visiblePassword,
           decoration: InputDecoration(
@@ -64,7 +64,7 @@ class RegisterPage extends StatelessWidget {
           obscureText: true,
            controller: password_controller,
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
                TextField(
           decoration: InputDecoration(
             hintText: "latitude",
@@ -78,7 +78,7 @@ class RegisterPage extends StatelessWidget {
           obscureText: true,
            controller: latitude_controller,
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
                TextField(
           decoration: InputDecoration(
             hintText: "longitude",
@@ -92,16 +92,16 @@ class RegisterPage extends StatelessWidget {
           obscureText: true,
            controller: longitude_controller,
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         ElevatedButton(
           onPressed: () {Navigator.pushNamed(context, '/login');},
-          child: Text(
+          style: ElevatedButton.styleFrom(
+            shape: const StadiumBorder(),
+            padding: const EdgeInsets.symmetric(vertical: 16),
+          ),
+          child: const Text(
             "Registro",
             style: TextStyle(fontSize: 20),
-          ),
-          style: ElevatedButton.styleFrom(
-            shape: StadiumBorder(),
-            padding: EdgeInsets.symmetric(vertical: 16),
           ),
         )
       ],

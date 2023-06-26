@@ -40,17 +40,17 @@ class _myforgotpageState extends State<myforgotpage>
           vsync: this,
           child: Form(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30.0),
+              padding: const EdgeInsets.symmetric(horizontal: 30.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     'Enter Your Email',
                     style: TextStyle(fontSize: 30, color: Colors.black),
                   ),
                   TextFormField(
-                    style: TextStyle(color: Colors.black),
-                    decoration: InputDecoration(
+                    style: const TextStyle(color: Colors.black),
+                    decoration: const InputDecoration(
                       labelText: 'Email',
                       icon: Icon(
                         Icons.mail,
@@ -71,13 +71,13 @@ class _myforgotpageState extends State<myforgotpage>
                     ),
                     controller:forgot_controller,
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   ElevatedButton(
-                    child: Text('Send'),
                     onPressed: () {},
                     style: TextButton.styleFrom(
                       backgroundColor: Colors.black, // Background Color
                     ),
+                    child: const Text('Send'),
                   ),
                 ],
               ),
