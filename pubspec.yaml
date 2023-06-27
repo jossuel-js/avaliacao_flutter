@@ -39,6 +39,7 @@ dependencies:
   google_maps_flutter: ^2.2.8
   animated_background: ^2.0.0
   http: ^0.13.6
+  mongo_dart: ^0.9.1
   
 
 dev_dependencies:
