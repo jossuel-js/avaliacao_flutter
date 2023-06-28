@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
-    TextEditingController email_controller = TextEditingController();
-  TextEditingController password_controller= TextEditingController();
+  TextEditingController email_controller = TextEditingController();
+  TextEditingController password_controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        body: Container(
-          margin: EdgeInsets.all(24),
-          child: SingleChildScrollView(
+        child: Scaffold(
+      body: Container(
+        margin: EdgeInsets.all(24),
+        child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -28,9 +28,8 @@ class LoginPage extends StatelessWidget {
     return Column(
       children: [
         Image.asset('assets/images/ifpi.jpg'),
-       Padding(padding: EdgeInsets.all(30))
+        Padding(padding: EdgeInsets.all(30))
       ],
-      
     );
   }
 
@@ -39,7 +38,7 @@ class LoginPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         TextField(
-          controller:email_controller,
+          controller: email_controller,
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
               hintText: "Email",
@@ -52,8 +51,8 @@ class LoginPage extends StatelessWidget {
         ),
         SizedBox(height: 10),
         TextField(
-          controller:password_controller,
-           keyboardType: TextInputType.visiblePassword,
+          controller: password_controller,
+          keyboardType: TextInputType.visiblePassword,
           decoration: InputDecoration(
             hintText: "Senha",
             border: OutlineInputBorder(
@@ -67,7 +66,9 @@ class LoginPage extends StatelessWidget {
         ),
         SizedBox(height: 10),
         ElevatedButton(
-          onPressed: () {Navigator.pushNamed(context, '/homepage');},
+          onPressed: () {
+            Navigator.pushNamed(context, '/homepage');
+          },
           child: Text(
             "Entrar",
             style: TextStyle(fontSize: 20),
@@ -82,7 +83,11 @@ class LoginPage extends StatelessWidget {
   }
 
   _forgotPassword(context) {
-    return TextButton(onPressed: () {Navigator.pushNamed(context, '/forgot');}, child: Text("Esqueceu a Senha?"));
+    return TextButton(
+        onPressed: () {
+          Navigator.pushNamed(context, '/forgot');
+        },
+        child: Text("Esqueceu a Senha?"));
   }
 
   _signup(context) {
@@ -90,7 +95,11 @@ class LoginPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text("Nao possui uma conta? "),
-        TextButton(onPressed: () {Navigator.pushNamed(context, '/register');}, child: Text("Cadastrar-se"))
+        TextButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/register');
+            },
+            child: Text("Cadastrar-se"))
       ],
     );
   }
