@@ -1,5 +1,3 @@
-import 'dart:js_interop';
-
 import 'package:avaliacao/database/mongodb.dart';
 import 'package:flutter/material.dart';
 import 'package:mongo_dart/mongo_dart.dart';

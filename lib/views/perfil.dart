@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:avaliacao/globals.dart' as globals;
 
 class ProfileScreen extends StatelessWidget {
+
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
