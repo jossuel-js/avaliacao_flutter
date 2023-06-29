@@ -1,4 +1,6 @@
+import 'package:avaliacao/database/mongodb.dart';
 import 'package:flutter/material.dart';
+import 'package:mongo_dart/mongo_dart.dart';
 
 class LoginPage extends StatelessWidget {
   TextEditingController email_controller = TextEditingController();
@@ -96,7 +98,11 @@ class LoginPage extends StatelessWidget {
       children: [
         Text("Nao possui uma conta? "),
         TextButton(
-            onPressed: () {
+            onPressed: () async{
+              // await MongoDb.registrarUsuario('pedro', 'pedro@email', 'pedro', 123 , 123);
+              // await MongoDb.retornarTodosUsuarios();
+              // await MongoDb.retornarUsuarioPeloId(ObjectId.fromHexString('649ccc6273dca0c3530aed36'));
+              await MongoDb.loginUsuario('pedro@email', 'pedro');
               Navigator.pushNamed(context, '/register');
             },
             child: Text("Cadastrar-se"))
