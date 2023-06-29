@@ -13,7 +13,7 @@ class MongoDb{
     return collection;
   }
 
-  static registrarUsuario(String name, String email, String password, num latitude, num longitude ) async{
+  static registrarUsuario(String name, String email, String password, String latitude, String longitude ) async{
     final db = await MongoDb.connect();
     final createdId = ObjectId();
     
@@ -32,7 +32,7 @@ class MongoDb{
     return id;
   }
 
-  static loginUsuario(String email, String password) async {
+  static loginUsuario(String? email, String? password) async {
     final db = await MongoDb.connect();
 
     List <Map<String, Object?>> usuario = await db.find({'email': email}).toList();
@@ -46,7 +46,9 @@ class MongoDb{
       final a = usuario[0]['_id'].toString();
       final b = a.split('"')[1];
       globals.usuarioId = ObjectId.fromHexString(b);
+      print('deu certo');
       return ObjectId.fromHexString(b);
+      
     }else{
       throw 'não foi possivel efetuar o login';
     }
@@ -60,7 +62,7 @@ class MongoDb{
     return usuarios;
   }
 
-  static retornarTodosUsuarios() async {
+  Future<List<dynamic>> retornarTodosUsuarios() async {
     final db = await MongoDb.connect();
 
     List <Map<String, Object?>> usuarios = await db.find().toList();

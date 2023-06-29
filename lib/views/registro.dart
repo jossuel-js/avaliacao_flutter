@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 
+import '../database/mongodb.dart';
+
 class RegisterPage extends StatelessWidget {
+  TextEditingController name_controller = TextEditingController();
   TextEditingController email_controller = TextEditingController();
-  TextEditingController password_controller= TextEditingController();
-  TextEditingController latitude_controller= TextEditingController();
+  TextEditingController password_controller = TextEditingController();
+  TextEditingController latitude_controller = TextEditingController();
   TextEditingController longitude_controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        body:SingleChildScrollView(child: 
-         Container(
+        child: Scaffold(
+      body: SingleChildScrollView(
+        child: Container(
           margin: EdgeInsets.all(24),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -38,7 +41,20 @@ class RegisterPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         TextField(
-          keyboardType:TextInputType.emailAddress,
+          keyboardType: TextInputType.name,
+          decoration: InputDecoration(
+              hintText: "Nome",
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(18),
+                  borderSide: BorderSide.none),
+              fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
+              filled: true,
+              prefixIcon: Icon(Icons.person)),
+          controller: name_controller,
+        ),
+        SizedBox(height: 10),
+        TextField(
+          keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
               hintText: "Email",
               border: OutlineInputBorder(
@@ -47,11 +63,11 @@ class RegisterPage extends StatelessWidget {
               fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
               filled: true,
               prefixIcon: Icon(Icons.person)),
-              controller: email_controller,
+          controller: email_controller,
         ),
         SizedBox(height: 10),
         TextField(
-          keyboardType:TextInputType.visiblePassword,
+          keyboardType: TextInputType.visiblePassword,
           decoration: InputDecoration(
             hintText: "Senha",
             border: OutlineInputBorder(
@@ -62,10 +78,10 @@ class RegisterPage extends StatelessWidget {
             prefixIcon: Icon(Icons.password),
           ),
           obscureText: true,
-           controller: password_controller,
+          controller: password_controller,
         ),
         SizedBox(height: 10),
-               TextField(
+        TextField(
           decoration: InputDecoration(
             hintText: "latitude",
             border: OutlineInputBorder(
@@ -76,10 +92,10 @@ class RegisterPage extends StatelessWidget {
             prefixIcon: Icon(Icons.location_on),
           ),
           obscureText: true,
-           controller: latitude_controller,
+          controller: latitude_controller,
         ),
         SizedBox(height: 10),
-               TextField(
+        TextField(
           decoration: InputDecoration(
             hintText: "longitude",
             border: OutlineInputBorder(
@@ -90,11 +106,14 @@ class RegisterPage extends StatelessWidget {
             prefixIcon: Icon(Icons.location_on),
           ),
           obscureText: true,
-           controller: longitude_controller,
+          controller: longitude_controller,
         ),
         SizedBox(height: 10),
         ElevatedButton(
-          onPressed: () {Navigator.pushNamed(context, '/login');},
+          onPressed: () async {
+            await MongoDb.registrarUsuario(name_controller.text, email_controller.text,password_controller.text,latitude_controller.text,longitude_controller.text);
+            
+          },
           child: Text(
             "Registro",
             style: TextStyle(fontSize: 20),

@@ -5,6 +5,7 @@ import 'package:mongo_dart/mongo_dart.dart';
 class LoginPage extends StatelessWidget {
   TextEditingController email_controller = TextEditingController();
   TextEditingController password_controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -68,8 +69,9 @@ class LoginPage extends StatelessWidget {
         ),
         SizedBox(height: 10),
         ElevatedButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/homepage');
+          onPressed: () async {
+            await MongoDb.loginUsuario(
+                email_controller.text, password_controller.text);
           },
           child: Text(
             "Entrar",
@@ -98,12 +100,12 @@ class LoginPage extends StatelessWidget {
       children: [
         Text("Nao possui uma conta? "),
         TextButton(
-            onPressed: () async{
-              // await MongoDb.registrarUsuario('pedro', 'pedro@email', 'pedro', 123 , 123);
-              // await MongoDb.retornarTodosUsuarios();
+            onPressed: () async {
+              //await MongoDb.registrarUsuario(
+              //   'pedro', 'pedro@gmail.com', 'pedro', 123, 123);
+              //await MongoDb.retornarTodosUsuarios();
               // await MongoDb.retornarUsuarioPeloId(ObjectId.fromHexString('649ccc6273dca0c3530aed36'));
-              await MongoDb.loginUsuario('pedro@email', 'pedro');
-              Navigator.pushNamed(context, '/register');
+              Navigator.pushNamed(context, '/homepage');
             },
             child: Text("Cadastrar-se"))
       ],

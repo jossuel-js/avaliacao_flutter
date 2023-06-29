@@ -5,8 +5,8 @@ class User{
   final String name;
   final String email;
   final String password;
-  final num latitude;
-  final num longitude;
+  final String latitude;
+  final String longitude;
 
   const User(this.id, this.name, this.email, this.password, this.latitude, this.longitude);
 }
