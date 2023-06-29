@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:avaliacao/globals.dart' as globals;
 
 
 _header(context) {
@@ -141,6 +142,7 @@ void _voltarPagina(BuildContext context) {
             TextButton(
               child: Text('Sair'),
               onPressed: () {
+                globals.isLoggedIn = false;
                 Navigator.of(context).pushNamed('/login');
               },
             ),
