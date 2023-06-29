@@ -46,9 +46,7 @@ class MongoDb{
       final a = usuario[0]['_id'].toString();
       final b = a.split('"')[1];
       globals.usuarioId = ObjectId.fromHexString(b);
-      print('deu certo');
       return ObjectId.fromHexString(b);
-      
     }else{
       throw 'não foi possivel efetuar o login';
     }

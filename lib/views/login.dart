@@ -1,6 +1,10 @@
+import 'dart:js_interop';
+
 import 'package:avaliacao/database/mongodb.dart';
 import 'package:flutter/material.dart';
 import 'package:mongo_dart/mongo_dart.dart';
+
+import 'package:avaliacao/globals.dart' as globals;
 
 class LoginPage extends StatelessWidget {
   TextEditingController email_controller = TextEditingController();
@@ -70,8 +74,12 @@ class LoginPage extends StatelessWidget {
         SizedBox(height: 10),
         ElevatedButton(
           onPressed: () async {
-            await MongoDb.loginUsuario(
-                email_controller.text, password_controller.text);
+            await MongoDb.loginUsuario(email_controller.text, password_controller.text);
+            if(globals.isLoggedIn == false){
+              Navigator.pop(context);
+            }else{
+              Navigator.pushNamed(context, '/homepage');
+            }
           },
           child: Text(
             "Entrar",
