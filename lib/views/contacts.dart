@@ -42,7 +42,8 @@ Future<List<dynamic>> retornarTodosUsuarios() async {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(user['email']),
-                    Text(user['password']),
+                    Text(user['latitude']),
+                    Text(user['longitude']),
                     
                   ]),
                 );
