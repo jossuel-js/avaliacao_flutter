@@ -91,7 +91,7 @@ class RegisterPage extends StatelessWidget {
             filled: true,
             prefixIcon: Icon(Icons.location_on),
           ),
-          obscureText: true,
+          
           controller: latitude_controller,
         ),
         SizedBox(height: 10),
@@ -105,7 +105,7 @@ class RegisterPage extends StatelessWidget {
             filled: true,
             prefixIcon: Icon(Icons.location_on),
           ),
-          obscureText: true,
+          
           controller: longitude_controller,
         ),
         SizedBox(height: 10),

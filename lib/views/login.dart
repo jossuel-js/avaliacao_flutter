@@ -111,7 +111,7 @@ class LoginPage extends StatelessWidget {
               //   'pedro', 'pedro@gmail.com', 'pedro', 123, 123);
               //await MongoDb.retornarTodosUsuarios();
               // await MongoDb.retornarUsuarioPeloId(ObjectId.fromHexString('649ccc6273dca0c3530aed36'));
-              Navigator.pushNamed(context, '/homepage');
+              Navigator.pushNamed(context, '/register');
             },
             child: Text("Cadastrar-se"))
       ],
