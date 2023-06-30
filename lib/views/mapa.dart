@@ -11,9 +11,9 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   GoogleMapController? _mapController;
-  List<Marker> markers = [     ];
+  List<Marker> markers = [];
   List<Marker> filteredMarkers = [];
-    final _searchController = TextEditingController();
+  final _searchController = TextEditingController();
 
   @override
   void initState() {
@@ -22,22 +22,19 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   Future<void> fetchMapData() async {
-    
     final db = await MongoDb.connect();
 
-    List <Map<String, Object?>> data = await db.find().toList();
+    List<Map<String, Object?>> data = await db.find().toList();
 
     setState(() {
       markers = createMarkersFromData(data);
     });
-
-    
   }
 
   List<Marker> createMarkersFromData(List<dynamic> data) {
     List<Marker> markers = [];
 
-   for (var item in data) {
+    for (var item in data) {
       final latitude = double.tryParse(item['latitude']);
       final longitude = double.tryParse(item['longitude']);
 
@@ -53,7 +50,8 @@ class _MapScreenState extends State<MapScreen> {
 
     return markers;
   }
-void _onMapCreated(GoogleMapController controller) {
+
+  void _onMapCreated(GoogleMapController controller) {
     _mapController = controller;
   }
 
@@ -61,33 +59,34 @@ void _onMapCreated(GoogleMapController controller) {
     final marker = markers.firstWhere((m) => m.markerId == markerId);
     final position = marker.position;
     final cameraPosition = CameraPosition(target: position, zoom: 15.0);
-    _mapController?.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+    _mapController
+        ?.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
   }
 
-void _searchMarkers(String query) {
-  setState(() {
-    if (query.isEmpty) {
-      filteredMarkers = markers;
-    } else {
-      filteredMarkers = markers.where((marker) {
-        final title = marker.infoWindow.title ?? '';
-        return title.toLowerCase().contains(query.toLowerCase());
-      }).toList();
+  void _searchMarkers(String query) {
+    setState(() {
+      if (query.isEmpty) {
+        filteredMarkers = markers;
+      } else {
+        filteredMarkers = markers.where((marker) {
+          final title = marker.infoWindow.title ?? '';
+          return title.toLowerCase().contains(query.toLowerCase());
+        }).toList();
+      }
+    });
+
+    if (filteredMarkers.isNotEmpty) {
+      final markerId = filteredMarkers.first.markerId;
+      _moveToMarker(markerId);
     }
-  });
-
-  if (filteredMarkers.isNotEmpty) {
-    final markerId = filteredMarkers.first.markerId;
-    _moveToMarker(markerId);
   }
-}
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Mapa'),
+        centerTitle: true,
       ),
       body: Column(
         children: [
@@ -100,7 +99,7 @@ void _searchMarkers(String query) {
                   _searchMarkers(value);
                 },
                 decoration: InputDecoration(
-                  labelText: 'Pesquisar por título',
+                  labelText: 'Pesquisar marcador',
                 ),
               ),
             ),
