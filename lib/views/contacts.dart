@@ -18,6 +18,7 @@ class _ContactScreenState extends State<ContactScreen> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+<<<<<<< Updated upstream
         appBar: AppBar(
           title: const Text('User List'),
         ),
@@ -50,5 +51,44 @@ class _ContactScreenState extends State<ContactScreen> {
                 },
               );
             }));
+=======
+      appBar: AppBar(
+        title: Text('User List'),
+      ),
+      body: FutureBuilder<List<dynamic>>(
+        future: retornarTodosUsuarios(),
+        builder: (context, snapshot) {
+if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text('Error: ${snapshot.error}'),
+            );
+          } else {
+            final users = snapshot.data;
+            return ListView.builder(
+              itemCount: users?.length,
+              itemBuilder: (context, index) {
+                final user = users![index];
+                return ListTile(
+                  title: Text(user['name']),
+                   subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(user['email']),
+                    Text(user['latitude']),
+                    Text(user['longitude']),
+                    
+                  ]),
+                );
+              },
+            );
+          }
+  }));}
+      
+    
+>>>>>>> Stashed changes
   }
 }
