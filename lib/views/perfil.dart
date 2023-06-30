@@ -23,7 +23,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text('Profile'),
+          title: const Text('Profile'),
         ),
         body: FutureBuilder<List<dynamic>>(
           future: retornarUsuario(),
@@ -37,29 +37,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 final String longitude = 'longitude - ' + user1['longitude'];
                 return Column(
                   children: [
-                    SizedBox(height: 16.0),
-                    CircleAvatar(
+                    const SizedBox(height: 16.0),
+                    const CircleAvatar(
                       radius: 80,
                       backgroundImage: AssetImage('assets/profile_image.jpg'),
                     ),
                     Text(
                       user1['name'],
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 16.0),
+                    const SizedBox(height: 16.0),
                     ListTile(
-                      leading: Icon(Icons.email),
+                      leading: const Icon(Icons.email),
                       title: Text(user1['email']),
                     ),
                     ListTile(
-                      leading: Icon(Icons.location_on),
+                      leading: const Icon(Icons.location_on),
                       title: Text(latitude),
                     ),
                     ListTile(
-                      leading: Icon(Icons.location_on),
+                      leading: const Icon(Icons.location_on),
                       title: Text(longitude),
                     ),
                   ],
