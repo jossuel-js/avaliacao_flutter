@@ -112,7 +112,7 @@ class RegisterPage extends StatelessWidget {
         ElevatedButton(
           onPressed: () async {
             await MongoDb.registrarUsuario(name_controller.text, email_controller.text,password_controller.text,latitude_controller.text,longitude_controller.text);
-            
+            Navigator.pushNamed(context, '/login');
           },
           child: Text(
             "Registro",
