@@ -8,6 +8,13 @@ class LoginPage extends StatelessWidget {
   TextEditingController email_controller = TextEditingController();
   TextEditingController password_controller = TextEditingController();
 
+  _errorMsg(BuildContext context){
+    return AlertDialog(
+      title: Text('Erro no login'),
+      content: Text('Verifique sua senha e email'),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -72,9 +79,11 @@ class LoginPage extends StatelessWidget {
         SizedBox(height: 10),
         ElevatedButton(
           onPressed: () async {
-            await MongoDb.loginUsuario(email_controller.text, password_controller.text);
-            if(globals.isLoggedIn == false){
-              Navigator.pop(context);
+            final id = await MongoDb.loginUsuario(email_controller.text, password_controller.text);
+            if(id == null){
+              await showDialog(context: context, builder: (BuildContext context){
+                return _errorMsg(context);
+              });
             }else{
               Navigator.pushNamed(context, '/homepage');
             }
@@ -107,10 +116,6 @@ class LoginPage extends StatelessWidget {
         Text("Nao possui uma conta? "),
         TextButton(
             onPressed: () async {
-              //await MongoDb.registrarUsuario(
-              //   'pedro', 'pedro@gmail.com', 'pedro', 123, 123);
-              //await MongoDb.retornarTodosUsuarios();
-              // await MongoDb.retornarUsuarioPeloId(ObjectId.fromHexString('649ccc6273dca0c3530aed36'));
               Navigator.pushNamed(context, '/register');
             },
             child: Text("Cadastrar-se"))

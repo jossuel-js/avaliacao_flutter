@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 
 import '../database/mongodb.dart';
@@ -8,6 +10,13 @@ class RegisterPage extends StatelessWidget {
   TextEditingController password_controller = TextEditingController();
   TextEditingController latitude_controller = TextEditingController();
   TextEditingController longitude_controller = TextEditingController();
+
+  _errorMsg(BuildContext context){
+    return AlertDialog(
+      title: Text('Erro no registro'),
+      content: Text('Tente novamente'),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -111,8 +120,14 @@ class RegisterPage extends StatelessWidget {
         SizedBox(height: 10),
         ElevatedButton(
           onPressed: () async {
-            await MongoDb.registrarUsuario(name_controller.text, email_controller.text,password_controller.text,latitude_controller.text,longitude_controller.text);
-            Navigator.pushNamed(context, '/login');
+            final id = await MongoDb.registrarUsuario(name_controller.text, email_controller.text,password_controller.text,latitude_controller.text,longitude_controller.text);
+            if(id != null) {
+              Navigator.pushNamed(context, '/login');
+            }else{
+              await showDialog(context: context, builder: (BuildContext context){
+                return _errorMsg(context);
+              });
+            }
           },
           child: Text(
             "Registro",
