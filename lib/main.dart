@@ -1,4 +1,3 @@
-
 import 'package:avaliacao/views/contacts.dart';
 import 'package:avaliacao/views/forgot.dart';
 import 'package:avaliacao/views/home.dart';
@@ -16,7 +15,6 @@ void main() {
   runApp(const MyApp());
 }
 
-
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -24,20 +22,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body:WelcomePage(),
+        body: WelcomePage(),
       ),
-      
       routes: {
-        '/homepage': (context) => const MyHomePage(),
+        '/homepage': (context) => MyHomePage(),
         '/login': (context) => LoginPage(),
         '/register': (context) => RegisterPage(),
-        '/maps': (context) => MapSample(),
-        '/forgot': (context) => const myforgotpage(title:'forgot-password'),
+        '/maps': (context) => MapScreen(),
+        '/forgot': (context) => myforgotpage(title: 'forgot-password'),
         '/weather': (context) => WeatherPage(),
         '/profile': (context) => ProfileScreen(),
-        '/insert_token': (context) => insertForgot(title: 'Insert Token forgot',),
+        '/insert_token': (context) => insertForgot(
+              title: 'Insert Token forgot',
+            ),
         '/contacts': (context) => ContactScreen(),
-        
       },
     );
   }

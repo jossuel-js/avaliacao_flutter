@@ -1,19 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:mongo_dart/mongo_dart.dart' as mongo;
 
-
-class MapSample extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'IFPI MAPS',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MapScreen(),
-    );
-  }
-}
+import '../database/mongodb.dart';
 
 class MapScreen extends StatefulWidget {
   @override
@@ -21,52 +10,74 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
-  late GoogleMapController mapController;
-  final LatLng _center = const LatLng(-5.088569, -42.810535);
-
-  Set<Marker> _allMarkers = {
-    Marker(
-      markerId: MarkerId('1'),
-      position: LatLng(37.773972, -122.431297),
-      infoWindow: InfoWindow(title: 'Marker 1'),
-    ),
-    Marker(
-      markerId: MarkerId('2'),
-      position: LatLng(37.774979, -122.419469),
-      infoWindow: InfoWindow(title: 'Marker 2'),
-    ),
-    Marker(
-      markerId: MarkerId('3'),
-      position: LatLng(37.775555, -122.415526),
-      infoWindow: InfoWindow(title: 'Marker 3'),
-    ),
-  };
-
-  Set<Marker> _filteredMarkers = {};
-
-  late TextEditingController _searchController;
+  GoogleMapController? _mapController;
+  List<Marker> markers = [];
+  List<Marker> filteredMarkers = [];
+  final _searchController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    _searchController = TextEditingController();
+    fetchMapData();
+  }
+
+  Future<void> fetchMapData() async {
+    final db = await MongoDb.connect();
+
+    List<Map<String, Object?>> data = await db.find().toList();
+
+    setState(() {
+      markers = createMarkersFromData(data);
+    });
+  }
+
+  List<Marker> createMarkersFromData(List<dynamic> data) {
+    List<Marker> markers = [];
+
+    for (var item in data) {
+      final latitude = double.tryParse(item['latitude']);
+      final longitude = double.tryParse(item['longitude']);
+
+      if (latitude != null && longitude != null) {
+        final marker = Marker(
+          markerId: MarkerId(item['_id'].toString()),
+          position: LatLng(latitude, longitude),
+          infoWindow: InfoWindow(title: item['name']),
+        );
+        markers.add(marker);
+      }
+    }
+
+    return markers;
   }
 
   void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
+    _mapController = controller;
   }
 
-  void _filterMarkers(String searchTerm) {
+  void _moveToMarker(MarkerId markerId) {
+    final marker = markers.firstWhere((m) => m.markerId == markerId);
+    final position = marker.position;
+    final cameraPosition = CameraPosition(target: position, zoom: 15.0);
+    _mapController
+        ?.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+  }
+
+  void _searchMarkers(String query) {
     setState(() {
-      _filteredMarkers = _allMarkers.where((marker) {
-        final title = marker.infoWindow!.title;
-        return title!.toLowerCase().contains(searchTerm.toLowerCase());
-      }).toSet();
+      if (query.isEmpty) {
+        filteredMarkers = markers;
+      } else {
+        filteredMarkers = markers.where((marker) {
+          final title = marker.infoWindow.title ?? '';
+          return title.toLowerCase().contains(query.toLowerCase());
+        }).toList();
+      }
     });
 
-    if (_filteredMarkers.isNotEmpty) {
-      final marker = _filteredMarkers.first;
-      mapController.animateCamera(CameraUpdate.newLatLng(marker.position));
+    if (filteredMarkers.isNotEmpty) {
+      final markerId = filteredMarkers.first.markerId;
+      _moveToMarker(markerId);
     }
   }
 
@@ -74,23 +85,21 @@ class _MapScreenState extends State<MapScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('IFPI MAPS'),
+        title: Text('Mapa'),
         centerTitle: true,
       ),
       body: Column(
         children: [
           Padding(
-            padding: EdgeInsets.all(8.0),
-            child: TextField(
-              controller: _searchController,
-              decoration: InputDecoration(
-                labelText: 'Search',
-                suffixIcon: IconButton(
-                  icon: Icon(Icons.search),
-                  onPressed: () {
-                    String searchTerm = _searchController.text;
-                    _filterMarkers(searchTerm);
-                  },
+            padding: const EdgeInsets.all(8.0),
+            child: Form(
+              child: TextFormField(
+                controller: _searchController,
+                onFieldSubmitted: (value) {
+                  _searchMarkers(value);
+                },
+                decoration: InputDecoration(
+                  labelText: 'Pesquisar marcador',
                 ),
               ),
             ),
@@ -99,10 +108,10 @@ class _MapScreenState extends State<MapScreen> {
             child: GoogleMap(
               onMapCreated: _onMapCreated,
               initialCameraPosition: CameraPosition(
-                target: _center,
-                zoom: 16.0,
+                target: LatLng(-5.104680, -42.758246),
+                zoom: 10,
               ),
-              markers: _filteredMarkers.isNotEmpty ? _filteredMarkers : _allMarkers,
+              markers: Set<Marker>.from(filteredMarkers),
             ),
           ),
         ],
