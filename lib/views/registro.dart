@@ -1,20 +1,34 @@
-
-
 import 'package:flutter/material.dart';
 
 import '../database/mongodb.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
   TextEditingController name_controller = TextEditingController();
+
   TextEditingController email_controller = TextEditingController();
+
   TextEditingController password_controller = TextEditingController();
+
   TextEditingController latitude_controller = TextEditingController();
+
   TextEditingController longitude_controller = TextEditingController();
 
-  _errorMsg(BuildContext context){
-    return AlertDialog(
+  _errorMsg(BuildContext context) {
+    return const AlertDialog(
       title: Text('Erro no registro'),
       content: Text('Tente novamente'),
+    );
+  }
+
+  _errorMsg2(BuildContext context) {
+    return const AlertDialog(
+      title: Text("Erro no formulário"),
+      content: Text("Verifique se algum campo está vazio e tente novamente"),
     );
   }
 
@@ -24,7 +38,7 @@ class RegisterPage extends StatelessWidget {
         child: Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.all(24),
+          margin: const EdgeInsets.all(24),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -58,10 +72,10 @@ class RegisterPage extends StatelessWidget {
                   borderSide: BorderSide.none),
               fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
               filled: true,
-              prefixIcon: Icon(Icons.person)),
+              prefixIcon: const Icon(Icons.person)),
           controller: name_controller,
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         TextField(
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
@@ -71,10 +85,10 @@ class RegisterPage extends StatelessWidget {
                   borderSide: BorderSide.none),
               fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
               filled: true,
-              prefixIcon: Icon(Icons.person)),
+              prefixIcon: const Icon(Icons.person)),
           controller: email_controller,
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         TextField(
           keyboardType: TextInputType.visiblePassword,
           decoration: InputDecoration(
@@ -84,12 +98,12 @@ class RegisterPage extends StatelessWidget {
                 borderSide: BorderSide.none),
             fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
             filled: true,
-            prefixIcon: Icon(Icons.password),
+            prefixIcon: const Icon(Icons.password),
           ),
           obscureText: true,
           controller: password_controller,
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         TextField(
           decoration: InputDecoration(
             hintText: "latitude",
@@ -98,12 +112,11 @@ class RegisterPage extends StatelessWidget {
                 borderSide: BorderSide.none),
             fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
             filled: true,
-            prefixIcon: Icon(Icons.location_on),
+            prefixIcon: const Icon(Icons.location_on),
           ),
-          
           controller: latitude_controller,
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         TextField(
           decoration: InputDecoration(
             hintText: "longitude",
@@ -112,30 +125,61 @@ class RegisterPage extends StatelessWidget {
                 borderSide: BorderSide.none),
             fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
             filled: true,
-            prefixIcon: Icon(Icons.location_on),
+            prefixIcon: const Icon(Icons.location_on),
           ),
-          
           controller: longitude_controller,
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         ElevatedButton(
           onPressed: () async {
-            final id = await MongoDb.registrarUsuario(name_controller.text, email_controller.text,password_controller.text,latitude_controller.text,longitude_controller.text);
-            if(id != null) {
-              Navigator.pushNamed(context, '/login');
-            }else{
-              await showDialog(context: context, builder: (BuildContext context){
-                return _errorMsg(context);
-              });
+            bool validacao = true;
+            if(name_controller.text.isEmpty){
+              validacao = false;
+            }
+            if(email_controller.text.isEmpty){
+              validacao = false;
+            }
+            if(password_controller.text.isEmpty){
+              validacao = false;
+            }
+            if(latitude_controller.text.isEmpty){
+              validacao = false;
+            }
+            if(longitude_controller.text.isEmpty){
+              validacao = false;
+            }
+
+            if (validacao == false) {
+              await showDialog(
+                  context: context,
+                  builder: (BuildContext context) => _errorMsg2(context));
+            } else {
+
+              final id = await MongoDb.registrarUsuario(
+                name_controller.text,
+                email_controller.text,
+                password_controller.text,
+                latitude_controller.text,
+                longitude_controller.text);
+
+              if (id != null) {
+                Navigator.pushNamed(context, '/login');
+              } else {
+                await showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return _errorMsg(context);
+                    });
+              }
             }
           },
-          child: Text(
+          child: const Text(
             "Registro",
             style: TextStyle(fontSize: 20),
           ),
           style: ElevatedButton.styleFrom(
-            shape: StadiumBorder(),
-            padding: EdgeInsets.symmetric(vertical: 16),
+            shape: const StadiumBorder(),
+            padding: const EdgeInsets.symmetric(vertical: 16),
           ),
         )
       ],

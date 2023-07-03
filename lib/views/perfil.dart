@@ -1,3 +1,4 @@
+// ignore_for_file: prefer_interpolation_to_compose_strings
 import 'package:avaliacao/database/mongodb.dart';
 import 'package:flutter/material.dart';
 import 'package:avaliacao/globals.dart' as globals;
@@ -29,7 +30,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             future: retornarUsuario(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(),
                 );
               } else if (snapshot.hasError) {
