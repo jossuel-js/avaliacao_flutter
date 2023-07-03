@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/weather_model.dart';
-
-
-
-
+import '../services/weatherServices.dart';
 
 class WeatherPage extends StatefulWidget {
   @override
@@ -58,9 +54,9 @@ class _WeatherPageState extends State<WeatherPage> {
         appBar: AppBar(
           title: Text('Previsão do Tempo'),
           leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () => _voltarPagina(context),
-        ),
+            icon: Icon(Icons.arrow_back),
+            onPressed: () => _voltarPagina(context),
+          ),
         ),
         body: Container(
           child: Column(
@@ -111,6 +107,7 @@ class _WeatherPageState extends State<WeatherPage> {
     return kelvin - 273.15;
   }
 }
- void _voltarPagina(BuildContext context) {
-    Navigator.of(context).pushNamed("/homepage");
-  }
+
+void _voltarPagina(BuildContext context) {
+  Navigator.of(context).pushNamed("/homepage");
+}
