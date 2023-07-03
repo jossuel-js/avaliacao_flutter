@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/weather_model.dart';
-
-
-
+import '../services/serviceWeather.dart';
 
 
 class WeatherPage extends StatefulWidget {

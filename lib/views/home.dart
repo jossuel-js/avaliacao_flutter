@@ -6,27 +6,27 @@ _header(context) {
   return Column(
     children: [
       Image.asset('assets/images/ifpi.jpg'),
-      Padding(padding: EdgeInsets.all(30))
+      const Padding(padding: EdgeInsets.all(30))
     ],
   );
 }
 
 
 class MyHomePage extends StatelessWidget {
-  
-  
+  const MyHomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
      return WillPopScope(
       onWillPop: () => _exibirAlertaSair(context),
       child: Scaffold(
       appBar: AppBar(
-        title: Text('HOMEPAGE'),
+        title: const Text('HOMEPAGE'),
         centerTitle: true,
         leading: Row(
           children: [
             IconButton(
-              icon: Icon(Icons.logout),
+              icon: const Icon(Icons.logout),
               onPressed: () => _exibirAlertaSair(context),
               
             ),
@@ -40,76 +40,73 @@ class MyHomePage extends StatelessWidget {
           _header(context),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25),
                   ),
-                  backgroundColor: Color.fromARGB(255, 81, 59, 247),
-                  padding: EdgeInsets.symmetric(
-                    vertical: 20,
-                  ),
-                ),
-                onPressed: (() => {Navigator.pushNamed(context, '/contacts')}),
-                child: Text('Contatos'),
-              ),
-            ),
-          ),
-          SizedBox(height: 0),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.all(20),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  primary: Color.fromARGB(255, 81, 59, 247),
-                  padding: EdgeInsets.symmetric(
-                    vertical: 20,
-                  ),
-                ),
-                onPressed: (() => {Navigator.pushNamed(context, '/profile')}),
-                child: Text('Perfil'),
-              ),
-            ),
-          ),
-          SizedBox(height: 0),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.all(20.0),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  primary: Color.fromARGB(255, 81, 59, 247),
-                  padding: EdgeInsets.symmetric(
+                  backgroundColor: const Color.fromARGB(255, 81, 59, 247),
+                  padding: const EdgeInsets.symmetric(
                     vertical: 20,
                   ),
                 ),
                 onPressed: (() => {Navigator.pushNamed(context, '/maps')}),
-                child: Text('Mapa'),
+                child: const Text('Contacts'),
               ),
             ),
           ),
-          SizedBox(height: 0),
+          const SizedBox(height: 0),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(20),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25),
+                  ), backgroundColor: const Color.fromARGB(255, 81, 59, 247),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 20,
                   ),
-                  primary: Color.fromARGB(255, 93, 73, 248),
-                  padding: EdgeInsets.symmetric(
+                ),
+                onPressed: (() => {Navigator.pushNamed(context, '/maps')}),
+                child: const Text('Profile'),
+              ),
+            ),
+          ),
+          const SizedBox(height: 0),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25),
+                  ), backgroundColor: const Color.fromARGB(255, 81, 59, 247),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 20,
+                  ),
+                ),
+                onPressed: (() => {Navigator.pushNamed(context, '/maps')}),
+                child: const Text('Maps'),
+              ),
+            ),
+          ),
+          const SizedBox(height: 0),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25),
+                  ), backgroundColor: const Color.fromARGB(255, 93, 73, 248),
+                  padding: const EdgeInsets.symmetric(
                     vertical: 20,
                   ),
                 ),
                 onPressed: (() => {Navigator.pushNamed(context, '/weather')}),
-                child: Text('Clima'),
+                child: const Text('Weather'),
               ),
             ),
           ),
@@ -130,17 +127,17 @@ void _voltarPagina(BuildContext context) {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Deseja sair?'),
-          content: Text('Tem certeza que deseja sair?'),
+          title: const Text('Deseja sair?'),
+          content: const Text('Tem certeza que deseja sair?'),
           actions: [
             TextButton(
-              child: Text('Cancelar'),
+              child: const Text('Cancelar'),
               onPressed: () {
                 Navigator.of(context).pop(false);
               },
             ),
             TextButton(
-              child: Text('Sair'),
+              child: const Text('Sair'),
               onPressed: () {
                 globals.isLoggedIn = false;
                 Navigator.of(context).pushNamed('/login');
